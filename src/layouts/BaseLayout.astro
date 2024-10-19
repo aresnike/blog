@@ -1,0 +1,41 @@
+---
+import Header from "../components/Header.astro";
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{pageTitle}</title>
+    </head>
+    <body>
+        <Header></Header>
+        <div class="page-title">
+            <h1>{pageTitle}</h1>
+        </div>
+        <slot />
+    </body>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            color: white;
+        }
+        body {
+            padding: 1.5rem;
+            background-color: #18171B;
+            width: 100%;
+            max-width: 48rem;
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+        }
+        .page-title {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</html>
