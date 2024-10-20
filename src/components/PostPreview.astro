@@ -1,35 +1,39 @@
 ---
-
+const { postUrl, postTitle, postDescription, postPublishDate, postTags } =
+    Astro.props;
 ---
 
-<div class="post-preview">
-    <div class="post-title">
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-    </div>
-    <div class="post-description">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut sapiente quae debitis nam, non, tempora natus, molestias praesentium facere tenetur doloribus laborum facilis nulla minus quibusdam illum fuga magnam quod aut. Aspernatur id similique libero incidunt! Quidem ipsum voluptas, vel accusantium itaque, explicabo quis voluptatibus maxime placeat quae eius! Quod consectetur obcaecati cum? Deserunt praesentium dignissimos, sequi quod veritatis velit totam inventore cupiditate error tempora, perferendis quisquam hic est neque soluta, cumque unde reprehenderit non! Error libero sapiente ut atque corrupti temporibus doloribus eveniet est, fuga voluptate! Maiores, delectus asperiores dolore totam tenetur error laborum nesciunt officia quo accusantium possimus?</p>
-    </div>
-    <div class="post-preview-meta-data">
-        <div class="post-preview-tags">
-            <span class="post-preview-tag">Html</span>
-            <span class="post-preview-tag">CSS</span>
-            <span class="post-preview-tag">Javascript</span>
-            <span class="post-preview-tag">Web Standards</span>
+<a href={postUrl}>
+    <div class='post-preview'>
+        <div class='post-title'>
+            <h1>{postTitle}</h1>
         </div>
-        <div class="post-preview-date">
-            <p>24 June 2024</p>
+        <div class='post-description'>
+            <p>{postDescription}</p>
+        </div>
+        <div class='post-preview-meta-data'>
+            <div class='post-preview-tags'>
+                {
+                    postTags.map((postTag: any) => (
+                        <span class='post-preview-tag'>{postTag}</span>
+                    ))
+                }
+            </div>
+            <div class='post-preview-date'>
+                <p>{postPublishDate}</p>
+            </div>
         </div>
     </div>
-</div>
+</a>
 
 <style>
     .post-preview {
-        border: 2px solid #ffffff1B;
+        border: 2px solid #ffffff1b;
         border-radius: 20px;
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
         cursor: pointer;
     }
     .post-title {
@@ -37,13 +41,13 @@
         font-weight: bold;
     }
     .post-description {
-        max-height: 5rem;
-        overflow:hidden;
+        max-height: 3.8rem;
+        overflow: hidden;
         text-overflow: ellipsis;
         font-size: 0.8rem;
         color: grey;
     }
-    .post-preview-tags{
+    .post-preview-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 5px;

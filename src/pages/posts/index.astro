@@ -1,25 +1,35 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"
+import BaseLayout from '@/src/layouts/BaseLayout.astro';
 
-import PostPreview from "../../components/PostPreview.astro"
+import PostPreview from '@/src/components/PostPreview.astro';
 
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts', ({ data }: any) => {
+  return import.meta.env.PROD ? data.isDraft !== true && data.isPublic === true : true;
+});
 ---
 
-<BaseLayout pageTitle="Posts">
-    <div class="posts">
-        <PostPreview></PostPreview>
-        <PostPreview></PostPreview>
-        <PostPreview></PostPreview>
-        <PostPreview></PostPreview>
-        <PostPreview></PostPreview>
+<BaseLayout pageTitle='Posts'>
+    <div class='posts'>
+        {
+            posts.map((post: any) => (
+                <PostPreview
+                    postUrl={`/posts/${post.id}`}
+                    postTitle={post.data.title}
+                    postDescription={post.data.description}
+                    postPublishDate={post.data.publishDate}
+                    postTags={post.data.tags}
+                />
+            ))
+        }
     </div>
-    <!-- <div>Pagination Here</div> -->
 </BaseLayout>
 
 <style>
     .posts {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 2rem;
     }
 </style>

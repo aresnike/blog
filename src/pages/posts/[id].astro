@@ -1,0 +1,26 @@
+---
+import PostLayout from '@/src/layouts/PostLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { post }: any = Astro.props;
+const { Content } = await render(post);
+
+console.log(Content);
+---
+<PostLayout postTitle={post.data.title}>
+    <Content />
+</PostLayout>
+
+<style>
+    h1 {
+        font-size: 50px;
+    }
+</style>

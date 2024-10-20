@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import ProjectPreview from '../../components/ProjectPreview.astro';
+---
+
+<BaseLayout pageTitle='Projects'>
+    <div class='projects'>
+        <ProjectPreview
+            projectTitle={'Test project'}
+            projectDescription={'A placeholder project'}
+        />
+    </div>
+</BaseLayout>
+
+<style>
+    .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+</style>
