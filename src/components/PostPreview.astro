@@ -3,7 +3,7 @@ const { postUrl, postTitle, postDescription, postPublishDate, postTags } =
     Astro.props;
 ---
 
-<a href={postUrl}>
+<a href={postUrl} class="hover:opacity-75">
     <div class='post-preview'>
         <div class='post-title'>
             <h1>{postTitle}</h1>
