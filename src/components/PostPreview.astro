@@ -20,7 +20,7 @@ const { postUrl, postTitle, postDescription, postPublishDate, postTags } =
                 }
             </div>
             <div class='post-preview-date'>
-                <p>{postPublishDate}</p>
+                <p>{postPublishDate.toISOString().split('T')[0]}</p>
             </div>
         </div>
     </div>

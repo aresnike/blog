@@ -8,6 +8,7 @@ const { pageTitle } = Astro.props;
         <meta charset='utf-8' />
         <meta name='viewport' content='width=device-width' />
         <meta name='generator' content={Astro.generator} />
+        <meta name="robots" content="noindex">
         <title>{pageTitle}</title>
     </head>
     <body>
@@ -18,13 +19,15 @@ const { pageTitle } = Astro.props;
         <slot />
     </body>
     <style>
+        html {
+            display:inline-grid
+        }
         * {
             box-sizing: border-box;
             margin: 0px;
             color: white;
         }
         body {
-            padding: 1.5rem;
             background-color: #18171b;
             width: 100%;
             max-width: 48rem;

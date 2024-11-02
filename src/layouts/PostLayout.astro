@@ -1,14 +1,59 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 
-const { postUrl, postTitle, postDescription, postPublishDate, postTags } =
-    Astro.props;
-
+const { postTitle, postPublishDate, postTags } = Astro.props;
 ---
 
 <BaseLayout>
-    <article class="prose dark:prose-invert">
+    <article class='prose dark:prose-invert'>
+        <div class="flex justify-between gap-2 mb-4 w-100 pl-0">
+            <a
+                onclick="history.back()"
+                class='no-underline cursor-pointer'>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 inline-flex justify-start"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> </svg>
+                <span class="text-lg">Back</span>
+            </a>
+        </div>
         <h1>{postTitle}</h1>
+        <div class='post-preview-meta-data'>
+            <div class='post-preview-tags'>
+                {
+                    postTags.map((postTag: any) => (
+                        <span class='post-preview-tag'>{postTag}</span>
+                    ))
+                }
+            </div>
+            <div class='post-preview-date'>
+                <p class='m-0'>
+                    Published: {postPublishDate.toISOString().split('T')[0]}
+                </p>
+            </div>
+        </div>
         <slot />
     </article>
 </BaseLayout>
+
+<style>
+    .post-preview-tags {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 7px;
+    }
+    .post-preview-tag {
+        border: 0.5px solid grey;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        padding: 3px 9px;
+    }
+    .post-preview-meta-data {
+        display: flex;
+        justify-content: space-between;
+    }
+    .post-preview-date {
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        text-align: center;
+        margin: 0px;
+    }
+</style>
