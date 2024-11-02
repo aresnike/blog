@@ -1,6 +1,6 @@
 ---
 import Header from '@/src/components/Header.astro';
-const { pageTitle } = Astro.props;
+const { pageTitle, showBack } = Astro.props;
 ---
 
 <html lang='en'>
@@ -8,37 +8,47 @@ const { pageTitle } = Astro.props;
         <meta charset='utf-8' />
         <meta name='viewport' content='width=device-width' />
         <meta name='generator' content={Astro.generator} />
-        <meta name="robots" content="noindex">
+        <meta name='robots' content='noindex' />
         <title>{pageTitle}</title>
     </head>
     <body>
         <Header />
-        <div class='page-title'>
-            <h1>{pageTitle}</h1>
+        {
+            showBack && (
+                <div class='mx-auto flex w-[50.7rem] mb-5'>
+                    <button
+                        onclick='history.back()'
+                        class='focus-outline flex hover:opacity-75'>
+                        <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            viewBox='0 -1 25 25'
+                            fill='currentColor'
+                            stroke='currentColor'
+                            class='w-7 h-7 inline-flex justify-center items-center'>
+                            <path d='M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z' />{' '}
+                        </svg>
+                        <span class='text-lg inline-flex justify-center items-center'>
+                            Back
+                        </span>
+                    </button>
+                </div>
+            )
+        }
+        <div class='w-[50rem]'>
+            <slot />
         </div>
-        <slot />
     </body>
     <style>
-        html {
-            display:inline-grid
-        }
         * {
             box-sizing: border-box;
-            margin: 0px;
             color: white;
         }
         body {
             background-color: #18171b;
             width: 100%;
-            max-width: 48rem;
             display: flex;
             flex-direction: column;
-            justify-self: center;
-        }
-        .page-title {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+            align-items: center;
         }
     </style>
 </html>

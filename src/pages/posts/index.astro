@@ -6,11 +6,16 @@ import PostPreview from '@/src/components/PostPreview.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts', ({ data }: any) => {
-  return import.meta.env.PROD ? data.isDraft !== true && data.isPublic === true : true;
+    return import.meta.env.PROD
+        ? data.isDraft !== true && data.isPublic === true
+        : true;
 });
 ---
 
 <BaseLayout pageTitle='Posts'>
+    <div class='page-title prose max-w-none dark:prose-invert'>
+        <h1>Posts</h1>
+    </div>
     <div class='posts'>
         {
             posts.map((post: any) => (
@@ -31,5 +36,9 @@ const posts = await getCollection('posts', ({ data }: any) => {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+    }
+    .page-title {
+        color: white;
+        margin-bottom: 1rem;
     }
 </style>
