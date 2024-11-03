@@ -9,4 +9,5 @@ export default defineConfig({
     markdown: {
         remarkPlugins: [[remarkToc, { heading: 'toc', maxDepth: 3 }]],
     },
+    site: 'https://digzest.com',
 });
