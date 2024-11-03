@@ -15,7 +15,7 @@ const { postUrl, postTitle, postDescription, postPublishDate, postTags } =
             <div class='post-preview-tags'>
                 {
                     postTags.map((postTag: any) => (
-                        <span class='post-preview-tag'>{postTag}</span>
+                        <span class='post-preview-tag'>#{postTag}</span>
                     ))
                 }
             </div>
@@ -53,10 +53,8 @@ const { postUrl, postTitle, postDescription, postPublishDate, postTags } =
         gap: 5px;
     }
     .post-preview-tag {
-        border: 0.5px solid grey;
-        border-radius: 15px;
         font-size: 0.7rem;
-        padding: 5px 9px;
+        padding: 5px;
     }
     .post-preview-meta-data {
         display: flex;
